@@ -9,7 +9,7 @@ namespace RayTracing
 		Image(int width, int height, int channels = 4);
 		~Image();
 
-		void SetPixelData(glm::vec4 color, int position);
+		void SetPixelData(glm::vec4 color, int& position);
 		bool GenerateImage();
 	private:
 		int m_Width, m_Height, m_Channels;

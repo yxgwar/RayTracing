@@ -18,12 +18,12 @@ namespace RayTracing
 		stbi_image_free(m_Image);
 	}
 
-	void Image::SetPixelData(glm::vec4 color, int position)
+	void Image::SetPixelData(glm::vec4 color, int& position)
 	{
-		m_Image[position] = int(color.r * 255.0f);
-		m_Image[position + 1] = int(color.g * 255.0f);
-		m_Image[position + 2] = int(color.b * 255.0f);
-		m_Image[position + 3] = int(color.a * 255.0f);
+		m_Image[position++] = int(color.r * 255.0f);
+		m_Image[position++] = int(color.g * 255.0f);
+		m_Image[position++] = int(color.b * 255.0f);
+		m_Image[position++] = int(color.a * 255.0f);
 	}
 
 	bool Image::GenerateImage()

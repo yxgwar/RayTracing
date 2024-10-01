@@ -17,6 +17,7 @@ namespace RayTracing
 		Image image = Image(m_Width, m_Height);
 		
 		RAY_INFO("Start setting data!");
+
 		auto start = std::chrono::high_resolution_clock::now();
 		Render::StartRendering(image, m_Width, m_Height, m_Channels);
 		auto end = std::chrono::high_resolution_clock::now();
