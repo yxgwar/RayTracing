@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>RayTracing;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>submodules\glm;RayTracing;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,11 +131,13 @@
     <ClCompile Include="RayTracing\src\App.cpp" />
     <ClCompile Include="RayTracing\src\Entry.cpp" />
     <ClCompile Include="RayTracing\src\Image.cpp" />
+    <ClCompile Include="RayTracing\src\Render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RayTracing\src\App.h" />
     <ClInclude Include="RayTracing\src\Image.h" />
     <ClInclude Include="RayTracing\src\Log.h" />
+    <ClInclude Include="RayTracing\src\Render.h" />
     <ClInclude Include="RayTracing\stb_img\stb_image.h" />
     <ClInclude Include="RayTracing\stb_img\stb_image_write.h" />
   </ItemGroup>
