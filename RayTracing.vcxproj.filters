@@ -47,5 +47,8 @@
     <ClInclude Include="RayTracing\src\Render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="submodules\glm\glm\glm.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

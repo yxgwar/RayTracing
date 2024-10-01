@@ -7,7 +7,9 @@ namespace RayTracing
 	{
 		int index = 0;
 		for (int j = 0; j < height; j++) {
+#ifdef _DEBUG
 			std::clog << "\rScanlines remaining: " << (height - j) << ' ' << std::flush;
+#endif // _DEBUG
 			for (int i = 0; i < width; i++) {
 				glm::vec2 coord = { float(i) / (width), float(j) / (height)};
 				coord = coord * 2.0f - 1.0f;
@@ -17,7 +19,9 @@ namespace RayTracing
 				index += channels;
 			}
 		}
+#ifdef _DEBUG
 		std::clog << "\rDone.                 \n";
+#endif // _DEBUG
 	}
 
 	glm::vec4 Render::perPixel(glm::vec2& coord)
