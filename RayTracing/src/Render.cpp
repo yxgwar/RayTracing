@@ -22,14 +22,17 @@ namespace RayTracing
 
 	glm::vec4 Render::perPixel(glm::vec2& coord)
 	{
+		glm::vec3 spherePosition(0.0f, 0.0f, 0.0f);
 		glm::vec3 rayOrigin(0.0f, 0.0f, 2.0f);
+
+		glm::vec3 oc = rayOrigin - spherePosition;
 		glm::vec3 rayDirection(coord.x, coord.y, -1.0f);
 
 		float radius = 0.5f;
 
 		float a = glm::dot(rayDirection, rayDirection);
-		float b = 2.0f * glm::dot(rayOrigin, rayDirection);
-		float c = glm::dot(rayOrigin, rayOrigin) - radius * radius;
+		float b = 2.0f * glm::dot(oc, rayDirection);
+		float c = glm::dot(oc, oc) - radius * radius;
 
 		float discriminant = b * b - 4.0f * a * c;
 
