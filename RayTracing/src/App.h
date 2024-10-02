@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Camera.h"
+#include "Scene.h"
 
 namespace RayTracing
 {
@@ -12,7 +13,8 @@ namespace RayTracing
 
 		void Run();
 	private:
-		Camera camera;
+		Camera m_Camera;
+		Scene m_Scene;
 
 		int m_Width, m_Height, m_Channels;
 		float m_AspectRatio;

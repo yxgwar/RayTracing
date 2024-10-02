@@ -2,6 +2,8 @@
 
 #include "Image.h"
 #include "Camera.h"
+#include "Scene.h"
+#include "Ray.h"
 #include <glm/glm.hpp>
 
 namespace RayTracing
@@ -9,8 +11,8 @@ namespace RayTracing
 	class Render
 	{
 	public:
-		static void StartRendering(Camera& camera, Image& image, int width, int height, int channels);
+		static void StartRendering(Scene& scene, Camera& camera, Image& image, int width, int height, int channels);
 	private:
-		static glm::vec4 perPixel(glm::vec3& rayOrigin, glm::vec3& rayDirection);
+		static glm::vec4 perPixel(Scene& scene, Ray& ray);
 	};
 }

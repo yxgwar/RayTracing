@@ -135,15 +135,20 @@
     <ClCompile Include="RayTracing\src\App.cpp" />
     <ClCompile Include="RayTracing\src\Camera.cpp" />
     <ClCompile Include="RayTracing\src\Entry.cpp" />
+    <ClCompile Include="RayTracing\src\Hittable.cpp" />
     <ClCompile Include="RayTracing\src\Image.cpp" />
     <ClCompile Include="RayTracing\src\Render.cpp" />
+    <ClCompile Include="RayTracing\src\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RayTracing\src\App.h" />
     <ClInclude Include="RayTracing\src\Camera.h" />
+    <ClInclude Include="RayTracing\src\Hittable.h" />
     <ClInclude Include="RayTracing\src\Image.h" />
     <ClInclude Include="RayTracing\src\Log.h" />
+    <ClInclude Include="RayTracing\src\Ray.h" />
     <ClInclude Include="RayTracing\src\Render.h" />
+    <ClInclude Include="RayTracing\src\Scene.h" />
     <ClInclude Include="RayTracing\stb_img\stb_image.h" />
     <ClInclude Include="RayTracing\stb_img\stb_image_write.h" />
     <ClInclude Include="submodules\glm\glm\glm.hpp" />
