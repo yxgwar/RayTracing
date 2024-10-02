@@ -133,12 +133,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="RayTracing\src\App.cpp" />
+    <ClCompile Include="RayTracing\src\Camera.cpp" />
     <ClCompile Include="RayTracing\src\Entry.cpp" />
     <ClCompile Include="RayTracing\src\Image.cpp" />
     <ClCompile Include="RayTracing\src\Render.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RayTracing\src\App.h" />
+    <ClInclude Include="RayTracing\src\Camera.h" />
     <ClInclude Include="RayTracing\src\Image.h" />
     <ClInclude Include="RayTracing\src\Log.h" />
     <ClInclude Include="RayTracing\src\Render.h" />

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Camera.h"
+
 namespace RayTracing
 {
 	class App
@@ -10,6 +12,8 @@ namespace RayTracing
 
 		void Run();
 	private:
+		Camera camera;
+
 		int m_Width, m_Height, m_Channels;
 		float m_AspectRatio;
 	};
