@@ -31,6 +31,8 @@ namespace RayTracing
 		else
 		{
 			float t = (-b2 - glm::sqrt(discriminant)) / a;
+			if (t < 0)
+				return false;
 			glm::vec3 hitPosition = ray.origin + ray.direction * t;
 			glm::vec3 normal = glm::normalize(hitPosition - m_Position);
 

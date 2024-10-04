@@ -31,12 +31,29 @@ namespace RayTracing
 	{
 		glm::vec3 lightDirection = glm::normalize(glm::vec3(-1.0f));
 		HitData hitData;
-		if (scene.IsHit(ray, hitData))
+		Ray traceRay(ray);
+
+		glm::vec3 color(0.0f);
+		float multiplier = 1.0f;
+		int bounces = 2;
+		for (size_t i = 0; i < bounces; i++)
 		{
-			float d = glm::max(glm::dot(hitData.normal, -lightDirection), 0.0f);
-			return { glm::vec3(hitData.albedo) * d, 1.0f };
+			if (scene.IsHit(traceRay, hitData))
+			{
+				float d = glm::max(glm::dot(hitData.normal, -lightDirection), 0.0f);
+				color += glm::vec3(hitData.albedo) * d * multiplier;
+				multiplier *= 0.7f;
+
+				traceRay.origin = hitData.hitPosition + hitData.normal * 0.00001f;
+				//OUT = IN - 2*(IN*N)*N
+				traceRay.direction = glm::reflect(traceRay.direction, hitData.normal);
+			}
+			else
+			{
+				color += glm::vec3(0.5f, 0.7f, 0.8f) * multiplier;
+				break;
+			}
 		}
-		else
-			return { 0.0f, 0.0f, 0.0f, 1.0f };
+		return { color, 1.0f };
 	}
 }
