@@ -1,22 +1,55 @@
 #include "Render.h"
 #include "RayMath.h"
-#include <iostream>
+#include <thread>
 
 namespace RayTracing
 {
 	void Render::StartRendering(Scene& scene, Camera& camera, Image& image, int width, int height, int channels)
 	{
+#if 0
 		glm::vec3 rayOrigin = camera.GetOrigin();
+		int samplers = 100;
+
+		std::size_t num_threads = std::thread::hardware_concurrency();
+		std::vector<std::thread> threads;
+		int step = height / num_threads;
+		for (int th = 0; th < num_threads; th++)
+		{
+			threads.emplace_back([&, th]()
+				{
+					Ray ray;
+					ray.origin = rayOrigin;
+					int start = th * step;
+					int end = (th == num_threads - 1) ? height : (th + 1) * step;
+					for (int j = start; j < end; j++) {
+						for (int i = 0; i < width; i++) {
+							glm::vec4 colorS(0.0f);
+							for (int s = 0; s < samplers; s++)
+							{
+								int x = RayMath::clamp(i + RayMath::RandomI(), 0, width - 1);
+								int y = RayMath::clamp(j + RayMath::RandomI(), 0, height - 1);
+								ray.direction = camera.GetRayDirections()[x + y * width];
+								colorS += perPixel(scene, ray);
+							}
+
+							glm::vec4 color = colorS / float(samplers);
+							color = glm::clamp(color, glm::vec4(0.0f), glm::vec4(1.0f));//将颜色限制在0~255
+							image.SetPixelData(color, i + j * width);
+						}
+					}
+				});
+		}
+
+		for (auto& thread : threads)
+			thread.join();
+#else
+		glm::vec3 rayOrigin = camera.GetOrigin();
+		int samplers = 100;
+
 		Ray ray;
 		ray.origin = rayOrigin;
 
-		int samplers = 100;
-
-		int index = 0;
 		for (int j = 0; j < height; j++) {
-#ifdef _DEBUG
-			std::clog << "\rScanlines remaining: " << (height - j) << ' ' << std::flush;
-#endif // _DEBUG
 			for (int i = 0; i < width; i++) {
 				glm::vec4 colorS(0.0f);
 				for (int s = 0; s < samplers; s++)
@@ -29,12 +62,10 @@ namespace RayTracing
 
 				glm::vec4 color = colorS / float(samplers);
 				color = glm::clamp(color, glm::vec4(0.0f), glm::vec4(1.0f));//将颜色限制在0~255
-				image.SetPixelData(color, index);
+				image.SetPixelData(color, i + j * width);
 			}
 		}
-#ifdef _DEBUG
-		std::clog << "\rDone.                 \n";
-#endif // _DEBUG
+#endif
 	}
 
 	glm::vec4 Render::perPixel(Scene& scene, Ray& ray)
