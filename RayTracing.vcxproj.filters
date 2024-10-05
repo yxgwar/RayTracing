@@ -36,6 +36,9 @@
     <ClCompile Include="RayTracing\src\Hittable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RayTracing\src\RayMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RayTracing\src\App.h">
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RayTracing\src\Ray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RayTracing\src\RayMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

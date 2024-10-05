@@ -2,6 +2,7 @@
 #include "Log.h"
 #include "Image.h"
 #include "Render.h"
+#include "RayMath.h"
 #include <chrono>
 
 namespace RayTracing
@@ -15,9 +16,10 @@ namespace RayTracing
 
 	void App::Run()
 	{
+		RayMath::Init();
 		Image image = Image(m_Width, m_Height);
-		m_Camera.SetPosition({ 0.0f, 0.0f, 4.0f });
-		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, 0.3f, 0.0f }, 0.5f, glm::vec4{ 1.0f }));
+		m_Camera.SetPosition({ 0.0f, 0.0f, 3.0f });
+		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, 0.0f, 0.0f }, 0.5f, glm::vec4{ 1.0f }));
 		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, -100.5f, 0.0f }, 100.0f, glm::vec4{ 1.0f, 0.0f, 1.0f, 1.0f }));
 
 		RAY_INFO("Start setting data!");

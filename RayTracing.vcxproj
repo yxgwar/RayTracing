@@ -137,6 +137,7 @@
     <ClCompile Include="RayTracing\src\Entry.cpp" />
     <ClCompile Include="RayTracing\src\Hittable.cpp" />
     <ClCompile Include="RayTracing\src\Image.cpp" />
+    <ClCompile Include="RayTracing\src\RayMath.cpp" />
     <ClCompile Include="RayTracing\src\Render.cpp" />
     <ClCompile Include="RayTracing\src\Scene.cpp" />
   </ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="RayTracing\src\Hittable.h" />
     <ClInclude Include="RayTracing\src\Image.h" />
     <ClInclude Include="RayTracing\src\Log.h" />
+    <ClInclude Include="RayTracing\src\RayMath.h" />
     <ClInclude Include="RayTracing\src\Ray.h" />
     <ClInclude Include="RayTracing\src\Render.h" />
     <ClInclude Include="RayTracing\src\Scene.h" />

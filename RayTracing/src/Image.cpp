@@ -20,10 +20,10 @@ namespace RayTracing
 
 	void Image::SetPixelData(glm::vec4 color, int& position)
 	{
-		m_Image[position++] = int(color.r * 255.0f);
-		m_Image[position++] = int(color.g * 255.0f);
-		m_Image[position++] = int(color.b * 255.0f);
-		m_Image[position++] = int(color.a * 255.0f);
+		m_Image[position++] = int(std::sqrtf(color.r) * 255.0f);
+		m_Image[position++] = int(std::sqrtf(color.g) * 255.0f);
+		m_Image[position++] = int(std::sqrtf(color.b) * 255.0f);
+		m_Image[position++] = int(std::sqrtf(color.a) * 255.0f);
 	}
 
 	bool Image::GenerateImage()
