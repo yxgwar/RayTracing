@@ -18,13 +18,13 @@ namespace RayTracing
 	{
 		RayMath::Init();
 		Image image = Image(m_Width, m_Height);
-		m_Camera.SetPosition({ 0.0f, 0.0f, 3.0f });
 		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, 0.0f, 0.0f }, 0.5f, glm::vec4{ 1.0f }));
 		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, -100.5f, 0.0f }, 100.0f, glm::vec4{ 1.0f, 0.0f, 1.0f, 1.0f }));
 
 		RAY_INFO("Start setting data!");
 
 		auto start = std::chrono::high_resolution_clock::now();
+		m_Camera.SetPosition({ 0.0f, 0.0f, 3.0f });
 		Render::StartRendering(m_Scene, m_Camera, image, m_Width, m_Height, m_Channels);
 		auto end = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> duration = end - start;

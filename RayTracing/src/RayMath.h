@@ -10,17 +10,26 @@ namespace RayTracing
 		static void Init()
 		{
 			std::random_device rd; // 随机设备
-			std::mt19937 gen(rd()); // Mersenne Twister 随机引擎
-			std::uniform_real_distribution<> dis(0.0f, 0.5f); // 均匀分布在 [0, 0.5] 范围内的浮点数
+			gen = std::mt19937(rd());
+			disv = std::uniform_real_distribution<>(-0.5f, 0.5f);// 均匀分布在 [0, 0.5] 范围内的浮点数
+			disi = std::uniform_int_distribution<>(-1, 1); // 均匀分布在 [-1, 1] 范围内的整数
 		}
 
 		static glm::vec3 RandomVec()
 		{
-			return { dis(gen), dis(gen), dis(gen) };
+			return { disv(gen), disv(gen), disv(gen) };
 		}
+
+		static int RandomI()
+		{
+			return disi(gen);
+		}
+
+		static int clamp(int a, int min, int max);
 
 	private:
 		static std::mt19937 gen;
-		static std::uniform_real_distribution<> dis;
+		static std::uniform_real_distribution<> disv;
+		static std::uniform_int_distribution<> disi;
 	};
 }
