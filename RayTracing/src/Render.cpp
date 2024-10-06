@@ -6,10 +6,9 @@ namespace RayTracing
 {
 	void Render::StartRendering(Scene& scene, Camera& camera, Image& image, int width, int height, int channels)
 	{
-#if 0
 		glm::vec3 rayOrigin = camera.GetOrigin();
 		int samplers = 100;
-
+#if 1
 		std::size_t num_threads = std::thread::hardware_concurrency();
 		std::vector<std::thread> threads;
 		int step = height / num_threads;
@@ -43,9 +42,6 @@ namespace RayTracing
 		for (auto& thread : threads)
 			thread.join();
 #else
-		glm::vec3 rayOrigin = camera.GetOrigin();
-		int samplers = 100;
-
 		Ray ray;
 		ray.origin = rayOrigin;
 

@@ -11,7 +11,7 @@ namespace RayTracing
 		{
 			std::random_device rd; // 随机设备
 			gen = std::mt19937(rd());
-			disv = std::uniform_real_distribution<>(-0.5f, 0.5f);// 均匀分布在 [0, 0.5] 范围内的浮点数
+			disv = std::uniform_real_distribution<>(-0.5f, 0.5f);// 均匀分布在 [-0.5, 0.5] 范围内的浮点数
 			disi = std::uniform_int_distribution<>(-1, 1); // 均匀分布在 [-1, 1] 范围内的整数
 		}
 
@@ -20,6 +20,7 @@ namespace RayTracing
 			return { disv(gen), disv(gen), disv(gen) };
 		}
 
+		//返回-1~1的整数
 		static int RandomI()
 		{
 			return disi(gen);
@@ -28,7 +29,7 @@ namespace RayTracing
 		static int clamp(int a, int min, int max);
 
 	private:
-		static std::mt19937 gen;
+		static thread_local std::mt19937 gen;
 		static std::uniform_real_distribution<> disv;
 		static std::uniform_int_distribution<> disi;
 	};

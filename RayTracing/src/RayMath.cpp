@@ -2,7 +2,7 @@
 
 namespace RayTracing
 {
-	std::mt19937 RayMath::gen;
+	thread_local std::mt19937 RayMath::gen;
 	std::uniform_real_distribution<> RayMath::disv;
 	std::uniform_int_distribution<> RayMath::disi;
 

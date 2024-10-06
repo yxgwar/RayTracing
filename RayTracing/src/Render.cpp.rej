@@ -1,0 +1,72 @@
+diff a/RayTracing/src/Render.cpp b/RayTracing/src/Render.cpp	(rejected hunks)
+@@ -6,42 +6,47 @@
+ {
+ 	void Render::StartRendering(Scene& scene, Camera& camera, Image& image, int width, int height, int channels)
+ 	{
+-#if 0
++#if 1
+ 		glm::vec3 rayOrigin = camera.GetOrigin();
+ 		int samplers = 100;
+ 
+ 		std::size_t num_threads = std::thread::hardware_concurrency();
+ 		std::vector<std::thread> threads;
+ 		int step = height / num_threads;
+-		for (int th = 0; th < num_threads; th++)
++		for (int j = 0; j < height; j++) 
+ 		{
+-			threads.emplace_back([&, th]()
+-				{
+-					Ray ray;
+-					ray.origin = rayOrigin;
+-					int start = th * step;
+-					int end = (th == num_threads - 1) ? height : (th + 1) * step;
+-					for (int j = start; j < end; j++) {
+-						for (int i = 0; i < width; i++) {
+-							glm::vec4 colorS(0.0f);
+-							for (int s = 0; s < samplers; s++)
+-							{
+-								int x = RayMath::clamp(i + RayMath::RandomI(), 0, width - 1);
+-								int y = RayMath::clamp(j + RayMath::RandomI(), 0, height - 1);
+-								ray.direction = camera.GetRayDirections()[x + y * width];
+-								colorS += perPixel(scene, ray);
+-							}
++			threads.clear();
++			for (int th = 0; th < num_threads; th++)
++			{
++				threads.emplace_back([&, th]()
++					{
++						Ray ray;
++						ray.origin = rayOrigin;
++						int start = th * step;
++						int end = (th == num_threads - 1) ? width : (th + 1) * step;
++						for (int i = start; i < end; i++)
++						{
++							//glm::vec4 colorS(0.0f);
++							//for (int s = 0; s < samplers; s++)
++							//{
++							//	int x = RayMath::clamp(i + RayMath::RandomI(), 0, width - 1);
++							//	int y = RayMath::clamp(j + RayMath::RandomI(), 0, height - 1);
++							//	ray.direction = camera.GetRayDirections()[x + y * width];
++							//	colorS += perPixel(scene, ray);
++							//}
+ 
+-							glm::vec4 color = colorS / float(samplers);
++							//glm::vec4 color = colorS / float(samplers);
++							ray.direction = camera.GetRayDirections()[i + j * width];
++							glm::vec4 color = perPixel(scene, ray);
+ 							color = glm::clamp(color, glm::vec4(0.0f), glm::vec4(1.0f));//����ɫ������0~255
+ 							image.SetPixelData(color, i + j * width);
+ 						}
+-					}
+-				});
++					});
++			}
++			for (auto& thread : threads)
++				thread.join();
+ 		}
+ 
+-		for (auto& thread : threads)
+-			thread.join();
+ #else
+ 		glm::vec3 rayOrigin = camera.GetOrigin();
+ 		int samplers = 100;
