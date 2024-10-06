@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Camera.h"
-#include "Scene.h"
+#include "Renderer/Camera.h"
+#include "Renderer/Scene.h"
 
 namespace RayTracing
 {

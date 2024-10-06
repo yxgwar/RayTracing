@@ -1,14 +1,17 @@
 #pragma once
 #include "Ray.h"
+#include <memory>
 
 namespace RayTracing
 {
+	class Material;
+	
 	struct HitData
 	{
 		glm::vec3 hitPosition;
 		glm::vec3 normal;
 		float t;
-		glm::vec4 albedo;
+		std::shared_ptr<Material> material;
 	};
 
 	class Hittable
@@ -21,13 +24,13 @@ namespace RayTracing
 	class Sphere :public Hittable
 	{
 	public:
-		Sphere(glm::vec3 position, float radius, glm::vec4 albedo);
+		Sphere(const glm::vec3& position, float radius, std::shared_ptr<Material> material);
 		~Sphere() = default;
 
 		bool IsHit(const Ray& ray, HitData& hitData) override;
 	private:
 		glm::vec3 m_Position{ 0.0f };
 		float m_Radius = 0.5f;
-		glm::vec4 m_Albedo{ 1.0f };
+		std::shared_ptr<Material> m_Material;
 	};
 }

@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>submodules\glm;RayTracing;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>submodules\glm;RayTracing\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -122,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>submodules\glm;RayTracing;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>submodules\glm;RayTracing\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,27 +132,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="RayTracing\src\App.cpp" />
-    <ClCompile Include="RayTracing\src\Camera.cpp" />
-    <ClCompile Include="RayTracing\src\Entry.cpp" />
-    <ClCompile Include="RayTracing\src\Hittable.cpp" />
-    <ClCompile Include="RayTracing\src\Image.cpp" />
-    <ClCompile Include="RayTracing\src\RayMath.cpp" />
-    <ClCompile Include="RayTracing\src\Render.cpp" />
-    <ClCompile Include="RayTracing\src\Scene.cpp" />
+    <ClCompile Include="RayTracing\src\Core\App.cpp" />
+    <ClCompile Include="RayTracing\src\Renderer\Camera.cpp" />
+    <ClCompile Include="RayTracing\src\Core\Entry.cpp" />
+    <ClCompile Include="RayTracing\src\Renderer\Hittable.cpp" />
+    <ClCompile Include="RayTracing\src\Renderer\Image.cpp" />
+    <ClCompile Include="RayTracing\src\Renderer\Material.cpp" />
+    <ClCompile Include="RayTracing\src\Renderer\RayMath.cpp" />
+    <ClCompile Include="RayTracing\src\Renderer\Render.cpp" />
+    <ClCompile Include="RayTracing\src\Renderer\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RayTracing\src\App.h" />
-    <ClInclude Include="RayTracing\src\Camera.h" />
-    <ClInclude Include="RayTracing\src\Hittable.h" />
-    <ClInclude Include="RayTracing\src\Image.h" />
-    <ClInclude Include="RayTracing\src\Log.h" />
-    <ClInclude Include="RayTracing\src\RayMath.h" />
-    <ClInclude Include="RayTracing\src\Ray.h" />
-    <ClInclude Include="RayTracing\src\Render.h" />
-    <ClInclude Include="RayTracing\src\Scene.h" />
-    <ClInclude Include="RayTracing\stb_img\stb_image.h" />
-    <ClInclude Include="RayTracing\stb_img\stb_image_write.h" />
+    <ClInclude Include="RayTracing\src\Core\App.h" />
+    <ClInclude Include="RayTracing\src\Renderer\Camera.h" />
+    <ClInclude Include="RayTracing\src\Renderer\Hittable.h" />
+    <ClInclude Include="RayTracing\src\Renderer\Image.h" />
+    <ClInclude Include="RayTracing\src\Core\Log.h" />
+    <ClInclude Include="RayTracing\src\Renderer\Material.h" />
+    <ClInclude Include="RayTracing\src\Renderer\RayMath.h" />
+    <ClInclude Include="RayTracing\src\Renderer\Ray.h" />
+    <ClInclude Include="RayTracing\src\Renderer\Render.h" />
+    <ClInclude Include="RayTracing\src\Renderer\Scene.h" />
+    <ClInclude Include="RayTracing\src\stb_img\stb_image.h" />
+    <ClInclude Include="RayTracing\src\stb_img\stb_image_write.h" />
     <ClInclude Include="submodules\glm\glm\glm.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

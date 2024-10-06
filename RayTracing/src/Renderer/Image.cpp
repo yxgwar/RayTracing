@@ -1,11 +1,9 @@
 #include "Image.h"
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_img/stb_image.h"
+#include <stb_img/stb_image.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb_img/stb_image_write.h"
-
-#include "Log.h"
+#include <stb_img/stb_image_write.h>
 
 namespace RayTracing
 {

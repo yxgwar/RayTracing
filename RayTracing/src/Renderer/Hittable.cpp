@@ -1,9 +1,10 @@
 #include "Hittable.h"
+#include "Material.h"
 
 namespace RayTracing
 {
-	Sphere::Sphere(glm::vec3 position, float radius, glm::vec4 albedo)
-		:m_Position(position), m_Radius(radius), m_Albedo(albedo)
+	Sphere::Sphere(const glm::vec3& position, float radius, std::shared_ptr<Material> material)
+		:m_Position(position), m_Radius(radius), m_Material(material)
 	{
 	}
 
@@ -39,7 +40,7 @@ namespace RayTracing
 			hitData.hitPosition = hitPosition;
 			hitData.normal = normal;
 			hitData.t = t;
-			hitData.albedo = m_Albedo;
+			hitData.material = m_Material;
 			return true;
 		}
 	}

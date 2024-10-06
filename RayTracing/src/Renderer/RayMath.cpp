@@ -12,7 +12,7 @@ namespace RayTracing
 		{
 			glm::vec3 rv = { disv(gen), disv(gen), disv(gen) };
 			float l = glm::length(rv);
-			if (l <= 1)
+			if (l <= 1.0f && l >= 1e-6)
 				return rv / l;
 		}
 	}

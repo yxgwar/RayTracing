@@ -1,15 +1,16 @@
 #include "App.h"
 #include "Log.h"
-#include "Image.h"
-#include "Render.h"
-#include "RayMath.h"
+#include "Renderer/Image.h"
+#include "Renderer/Render.h"
+#include "Renderer/RayMath.h"
+#include "Renderer/Material.h"
 #include <chrono>
 
 namespace RayTracing
 {
 	App::App(int width, int height, int channels)
 		:m_Width(width), m_Height(height), m_Channels(channels), m_AspectRatio((float)width / height),
-		m_Camera(45.0f, 0.1f, 100.0f, width, height)
+		m_Camera(45.0f, 0.1f, 100.0f, float(width), float(height))
 	{
 		RAY_INFO("Start!");
 	}
@@ -18,8 +19,11 @@ namespace RayTracing
 	{
 		RayMath::Init();
 		Image image = Image(m_Width, m_Height);
-		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, 0.0f, 0.0f }, 0.5f, glm::vec4{ 1.0f }));
-		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, -100.5f, 0.0f }, 100.0f, glm::vec4{ 1.0f, 0.0f, 1.0f, 1.0f }));
+
+		auto metal = std::make_shared<Metal>(glm::vec3(0.9f));
+		auto land = std::make_shared<Lambertian>(glm::vec3{ 0.8f, 0.2f, 0.7f });
+		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3(0.0f), 0.5f, metal));
+		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, -100.5f, 0.0f }, 100.0f, land));
 
 		RAY_INFO("Start setting data!");
 
