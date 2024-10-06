@@ -72,27 +72,25 @@ namespace RayTracing
 		Ray traceRay(ray);
 
 		glm::vec3 color(1.0f);
-		float multiplier = 1.0f;
 		int bounces = 3;
 		for (size_t i = 0; i < bounces; i++)
 		{
 			if (scene.IsHit(traceRay, hitData))
 			{
 				glm::vec3 rColor;
-				if (hitData.material->Scatter(traceRay, hitData, rColor))
-					color *= multiplier * rColor;
+				if (scene.Scatter(traceRay, hitData, rColor))
+					color *= rColor;
 				else
 				{
 					color = glm::vec3(0.0f);
 					break;
 				}
-				//multiplier *= 0.5f;
 			}
 			else
 			{
 				glm::vec3 dir = traceRay.direction;
 				float a = (dir.y + 1.0f) * 0.5f;
-				color *= ((1.0f - a) * glm::vec3(1.0f) + a * glm::vec3(0.3f, 0.5f, 1.0f)) * multiplier;
+				color *= (1.0f - a) * glm::vec3(1.0f) + a * glm::vec3(0.3f, 0.5f, 1.0f);
 				break;
 			}
 		}

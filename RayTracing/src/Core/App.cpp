@@ -22,8 +22,12 @@ namespace RayTracing
 
 		auto metal = std::make_shared<Metal>(glm::vec3(0.9f));
 		auto land = std::make_shared<Lambertian>(glm::vec3{ 0.8f, 0.2f, 0.7f });
-		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3(0.0f), 0.5f, metal));
-		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, -100.5f, 0.0f }, 100.0f, land));
+		m_Scene.AddMaterials(metal);
+		m_Scene.AddMaterials(land);
+		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3(0.0f), 0.5f, 1));
+		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3(1.0f, 0.0f, 0.0f), 0.5f, 0));
+		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3(-1.0f, 0.0f, 0.0f), 0.5f, 0));
+		m_Scene.AddObjects(std::make_shared<Sphere>(glm::vec3{ 0.0f, -100.5f, 0.0f }, 100.0f, 1));
 
 		RAY_INFO("Start setting data!");
 

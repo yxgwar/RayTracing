@@ -3,8 +3,8 @@
 
 namespace RayTracing
 {
-	Sphere::Sphere(const glm::vec3& position, float radius, std::shared_ptr<Material> material)
-		:m_Position(position), m_Radius(radius), m_Material(material)
+	Sphere::Sphere(const glm::vec3& position, float radius, int index)
+		:m_Position(position), m_Radius(radius), m_Index(index)
 	{
 	}
 
@@ -40,7 +40,7 @@ namespace RayTracing
 			hitData.hitPosition = hitPosition;
 			hitData.normal = normal;
 			hitData.t = t;
-			hitData.material = m_Material;
+			hitData.index = m_Index;
 			return true;
 		}
 	}
