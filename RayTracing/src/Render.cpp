@@ -78,15 +78,15 @@ namespace RayTracing
 			if (scene.IsHit(traceRay, hitData))
 			{
 				float d = glm::max(glm::dot(hitData.normal, -lightDirection), 0.0f);
-				color += glm::vec3(hitData.albedo) * d * multiplier;
+				//color += glm::vec3(hitData.albedo) * d * multiplier;
 				multiplier *= 0.5f;
 
-				glm::vec3 diffuse = hitData.normal + 0.5f * RayMath::RandomVec();
+				glm::vec3 diffuse = hitData.normal + RayMath::RandomVec();
 				//diffuse = glm::dot(diffuse, hitData.normal) > 0 ? diffuse : -diffuse;
 				traceRay.origin = hitData.hitPosition + diffuse * 0.00001f;
-				//traceRay.direction = diffuse;
+				traceRay.direction = diffuse;
 				//OUT = IN - 2*(IN*N)*N
-				traceRay.direction = glm::reflect(traceRay.direction, diffuse);
+				//traceRay.direction = glm::reflect(traceRay.direction, diffuse);
 			}
 			else
 			{
