@@ -14,12 +14,13 @@ namespace RayTracing
 	class Metal :public Material
 	{
 	public:
-		Metal(const glm::vec3& albedo) :m_Albedo(albedo) {}
+		Metal(const glm::vec3& albedo, float fuzz) :m_Albedo(albedo), m_Fuzz(fuzz) {}
 		~Metal() = default;
 
 		bool Scatter(Ray& ray, HitData& hitData, glm::vec3& color) override;
 	private:
 		glm::vec3 m_Albedo;
+		float m_Fuzz;
 	};
 
 	class Lambertian :public Material
