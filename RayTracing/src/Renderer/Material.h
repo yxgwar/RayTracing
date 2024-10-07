@@ -33,4 +33,15 @@ namespace RayTracing
 	private:
 		glm::vec3 m_Albedo;
 	};
+
+	class Dielectric :public Material
+	{
+	public:
+		Dielectric(float refractionIndex) :m_RefractionIndex(refractionIndex) {}
+		~Dielectric() = default;
+
+		bool Scatter(Ray& ray, HitData& hitData, glm::vec3& color) override;
+	private:
+		float m_RefractionIndex;
+	};
 }

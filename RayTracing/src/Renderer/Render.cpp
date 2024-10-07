@@ -8,7 +8,7 @@ namespace RayTracing
 	void Render::StartRendering(Scene& scene, Camera& camera, Image& image, int width, int height, int channels)
 	{
 		glm::vec3 rayOrigin = camera.GetOrigin();
-		int samplers = 100;
+		int samplers = 5;
 #if 1
 		std::size_t num_threads = std::thread::hardware_concurrency();
 		std::vector<std::thread> threads;
@@ -72,7 +72,7 @@ namespace RayTracing
 		Ray traceRay(ray);
 
 		glm::vec3 color(1.0f);
-		int bounces = 3;
+		int bounces = 10;
 		for (size_t i = 0; i < bounces; i++)
 		{
 			if (scene.IsHit(traceRay, hitData))

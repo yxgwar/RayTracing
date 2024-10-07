@@ -3,14 +3,14 @@
 namespace RayTracing
 {
 	thread_local std::mt19937 RayMath::gen;
-	std::uniform_real_distribution<> RayMath::disv;
+	std::uniform_real_distribution<> RayMath::disf;
 	std::uniform_int_distribution<> RayMath::disi;
 
 	glm::vec3 RayMath::RandomVec()
 	{
 		while (true)
 		{
-			glm::vec3 rv = { disv(gen), disv(gen), disv(gen) };
+			glm::vec3 rv = { disf(gen), disf(gen), disf(gen) };
 			float l = glm::length(rv);
 			if (l <= 1.0f && l >= 1e-6)
 				return rv / l;

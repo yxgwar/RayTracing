@@ -16,6 +16,8 @@ namespace RayTracing
 
 		void AddObjects(std::shared_ptr<Sphere> sphere) { m_Objects.push_back(sphere); }
 		void AddMaterials(std::shared_ptr<Material> material) { m_Material.push_back(material); }
+
+		inline int LastMaterial() { return m_Material.size() - 1; }
 		//inline const std::vector<std::shared_ptr<Hittable>>& GetObjects() const { return m_Objects; }
 
 		bool IsHit(const Ray& ray, HitData& hitData);

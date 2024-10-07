@@ -48,7 +48,7 @@ namespace RayTracing
 
 				//使用0扩充至四维向量可以保证变换时不受平移影响，直接得到方向向量
 				glm::vec3 rayDirection = glm::vec3(m_InverseViewMatrix * glm::vec4(glm::normalize(targetP), 0.0f));
-				m_RayDirections[i + j * m_ViewportWidth] = rayDirection;
+				m_RayDirections[i + j * m_ViewportWidth] = glm::normalize(rayDirection);
 			}
 		}
 	}
