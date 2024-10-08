@@ -37,6 +37,7 @@ namespace RayTracing
 				coord.y *= -1;
 
 				//二维投影坐标 = ProjectionM * 三维空间坐标， 三维空间坐标 = (ProjectionM)^-1 * 二维投影坐标
+				//改变第一个1.0f可以调整二维屏幕到摄像机的距离
 				glm::vec4 target = m_InverseProjectionMatrix * glm::vec4(coord.x, coord.y, 1.0f, 1.0f);
 				glm::vec3 targetP = glm::vec3(target) / target.w;  //齐次
 
