@@ -8,7 +8,7 @@ namespace RayTracing
 	void Render::StartRendering(Scene& scene, Camera& camera, Image& image, int width, int height, int channels)
 	{
 		glm::vec3 rayOrigin = camera.GetOrigin();
-		int samplers = 5;
+		int samplers = 500;
 #if 1
 		std::size_t num_threads = std::thread::hardware_concurrency();
 		std::vector<std::thread> threads;
@@ -28,9 +28,13 @@ namespace RayTracing
 						glm::vec4 colorS(0.0f);
 						for (int s = 0; s < samplers; s++)
 						{
-							int x = RayMath::clamp(i + RayMath::RandomI(), 0, width - 1);
-							int y = RayMath::clamp(j + RayMath::RandomI(), 0, height - 1);
-							ray.direction = camera.GetRayDirections()[x + y * width];
+							float x = 0.0f, y = 0.0f;
+							if (i != width - 1)
+								x = RayMath::Randomf();
+							if (j != height - 1)
+								y = RayMath::Randomf();
+
+							ray.direction = normalize(camera.GetRayDirections()[k] + x * camera.GetRightD() + y * camera.GetDownD());
 							colorS += perPixel(scene, ray);
 						}
 

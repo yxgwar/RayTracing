@@ -12,6 +12,8 @@ namespace RayTracing
 
 		inline const glm::vec3& GetOrigin() const { return m_Position; }
 		inline const std::vector<glm::vec3>& GetRayDirections() const { return m_RayDirections; }
+		inline glm::vec3& GetRightD() { return m_RightD; }
+		inline glm::vec3& GetDownD() { return m_DownD; }
 
 		void SetPosition(glm::vec3 position) { m_Position = position;  calculateViewMatrix(); calculateRayDirections();}
 	private:
@@ -24,6 +26,8 @@ namespace RayTracing
 		//glm::mat4 m_Transform;
 
 		std::vector<glm::vec3> m_RayDirections;
+		glm::vec3 m_RightD;
+		glm::vec3 m_DownD;
 
 		glm::mat4 m_ViewMatrix;
 		glm::mat4 m_ProjectionMatrix;

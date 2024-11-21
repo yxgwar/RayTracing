@@ -20,7 +20,7 @@ namespace RayTracing
 		RayMath::Init();
 		Image image = Image(m_Width, m_Height);
 
-#if 1
+#if 0
 		auto metal = std::make_shared<Metal>(glm::vec3(0.9f), 0.5f);
 		auto right = std::make_shared<Dielectric>(1.5f);
 		auto bubble = std::make_shared<Dielectric>(1.0f / 1.5f);
@@ -80,7 +80,8 @@ namespace RayTracing
 		RAY_INFO("Start setting data!");
 
 		auto start = std::chrono::high_resolution_clock::now();
-		m_Camera.SetPosition({ 0.0f, 0.0f, 0.0f });
+		//m_Camera.SetPosition({ 0.0f, 0.0f, 3.0f });
+		m_Camera.SetPosition({ 13.0f, 2.0f, 3.0f });
 		Render::StartRendering(m_Scene, m_Camera, image, m_Width, m_Height, m_Channels);
 		auto end = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> duration = end - start;

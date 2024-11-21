@@ -17,8 +17,14 @@ namespace RayTracing
 		//‘› ± π”√glm::lookat
 		//m_Transform = glm::translate(glm::mat4(1.0f), m_Position);
 		//m_ViewMatrix = glm::inverse(m_Transform);
-		m_ViewMatrix = glm::lookAt(m_Position, m_Position + m_Direction, glm::vec3(0.0f, 1.0f, 0.0f));
+		m_ViewMatrix = glm::lookAt(m_Position, glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//m_ViewMatrix = glm::lookAt(m_Position, m_Position + m_Direction, glm::vec3(0.0f, 1.0f, 0.0f));
 		m_InverseViewMatrix = glm::inverse(m_ViewMatrix);
+
+		m_RightD = glm::normalize(glm::cross(glm::vec3(0.0f) - m_Position, glm::vec3(0.0f, 1.0f, 0.0f)));
+		m_DownD = glm::normalize(glm::cross(glm::vec3(0.0f) - m_Position, m_RightD));
+		m_RightD /= float(m_ViewportWidth);
+		m_DownD /= float(m_ViewportHeight);
 	}
 
 	void Camera::calculateProjectionMatrix()
